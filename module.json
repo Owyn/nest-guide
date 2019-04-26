@@ -1,0 +1,11 @@
+{
+	"disableAutoUpdate": false,
+	"name": "Nest-Guide",
+	"author": "Owyn",
+	"description": "Parquina's Nest guide for last boss",
+	"options": {
+		"niceName": "Nest-Guide"
+	},
+	"servers": ["https://raw.githubusercontent.com/Owyn/nest-guide/master/"],
+	"supportUrl": "https://github.com/Owyn/nest-guide/issues"
+}
