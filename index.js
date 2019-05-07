@@ -50,7 +50,7 @@ module.exports = function nest_guide(mod) {
 			itemhelper = !itemhelper;
 			command.message('Item helper for safe spots '+(itemhelper ? 'Enabled' : 'Disabled') + '.');
 		},
-		toparty() {
+		toparty(arg) {
 			if(arg === "stream")
 			{
 				streamenabled = !streamenabled;
