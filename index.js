@@ -1,6 +1,6 @@
 /* Usable Sysbols ◎●←↑→↓↖↗↘↙ */
 
-const mapID = [3101];					// MAP ID to input [ Normal Mode , Hard Mode ]
+const mapID = [3101, 3201];					// MAP ID to input [ Normal Mode , Hard Mode ]
 
 const SecondBossActions = {
 	231: {msg: 'OUT safe ↓', mark_degrees: 10, mark_distance: 300},
@@ -28,10 +28,10 @@ module.exports = function nest_guide(mod) {
 			command.message('Welcome to Penguin Nest - Normal Mode');
 			load();
 		} 
-		/*else if (event.zone === mapID[1]) {
+		else if (event.zone === mapID[1]) {
 			command.message('Welcome to Penguin Nest - Hard Mode');
 			load();
-		}*/
+		}
 		else
 		{
 			unload();
