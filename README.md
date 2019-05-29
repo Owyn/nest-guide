@@ -4,7 +4,7 @@
 
 SCRIPT BY OWYN - For TERA
 
-Call out attacks from Parquina's Nest last boss including both NORMAL MODE & HARD MODE (hard mode will be added later)
+Call out attacks from Parquina's Nest both NORMAL MODE & HARD MODE
 
 *Script automatically detects bosses and which dungeon hard or normal.
 
@@ -17,6 +17,12 @@ Please report any issues to me either here or on discord :)
 - !nest itemhelp - turns off\on placing signs on safe spots for right\left swings (DEFAULT: ON)
 
 # Attacks announced
+
+**1st Boss:**
+- Back + Front 
+- Circles 
+
+**2nd Boss:**
 - Back attack
 - IN, OUT
 - AOE

@@ -2,6 +2,11 @@
 
 const mapID = [3101, 3201];					// MAP ID to input [ Normal Mode , Hard Mode ]
 
+const FirstBossActions = {
+	119: {msg: 'Back + Front'},
+	314: {msg: 'Circles'}
+};
+
 const SecondBossActions = {
 	231: {msg: 'OUT safe ↓', mark_degrees: 10, mark_distance: 300},
 	232: {msg: 'IN safe ↑', mark_degrees: 10, mark_distance: 300},
@@ -133,17 +138,28 @@ module.exports = function nest_guide(mod) {
 		if(!hooks.length)
 		{
 			hook('S_ACTION_STAGE', 9, (event) => {
-				if(!enabled || event.templateId !== 2000 || event.stage != 0) return;
+				if(!enabled || event.stage != 0) return;
 				
-				let skill = event.skill.id % 1000;
-				if (SecondBossActions[skill])
+				if (event.templateId === 1000)
 				{
-					sendMessage(SecondBossActions[skill].msg);
-					if(itemhelper && typeof SecondBossActions[skill].mark_degrees !== "undefined")
+					let skill = event.skill.id % 1000;
+					if(FirstBossActions[skill])
 					{
-						bossCurLocation = event.loc;
-						bossCurAngle = event.w;
-						SpawnitemCircle(553, SecondBossActions[skill].mark_degrees, SecondBossActions[skill].mark_distance, 3000)
+						sendMessage(FirstBossActions[skill].msg);
+					}
+				}
+				else if (event.templateId === 2000)
+				{
+					let skill = event.skill.id % 1000;
+					if(SecondBossActions[skill])
+					{
+						sendMessage(SecondBossActions[skill].msg);
+						if(itemhelper && typeof SecondBossActions[skill].mark_degrees !== "undefined")
+						{
+							bossCurLocation = event.loc;
+							bossCurAngle = event.w;
+							SpawnitemCircle(553, SecondBossActions[skill].mark_degrees, SecondBossActions[skill].mark_distance, 3000)
+						}
 					}
 				}
 			});
