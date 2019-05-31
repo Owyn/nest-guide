@@ -3,8 +3,10 @@
 const mapID = [3101, 3201];					// MAP ID to input [ Normal Mode , Hard Mode ]
 
 const FirstBossActions = {
-	119: {msg: 'Back + Front'},
-	314: {msg: 'Circles'}
+	119: {msg: 'Back + Front (Slow)'},
+	139: {msg: 'Back + Front (Fast)'},
+	313: {msg: 'Circles (Slow)'},
+	314: {msg: 'Circles (Fast)'}
 };
 
 const SecondBossActions = {
