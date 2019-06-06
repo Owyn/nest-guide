@@ -6,7 +6,14 @@ const FirstBossActions = {
 	119: {msg: 'Back + Front (Slow)'},
 	139: {msg: 'Back + Front (Fast)'},
 	313: {msg: 'Circles (Slow)'},
-	314: {msg: 'Circles (Fast)'}
+	314: {msg: 'Circles (Fast)'},
+	113: {msg: 'Jump (Slow)'},
+	133: {msg: 'Jump (Fast)'},
+	118: {msg: 'Jump P (Slow)'},
+	138: {msg: 'Jump P (Fast)'},
+	111: {msg: 'Back spray (Slow)'},
+	131: {msg: 'Back spray (Fast)'},
+	305: {msg: 'Pizza'}
 };
 
 const SecondBossActions = {

@@ -21,6 +21,8 @@ Please report any issues to me either here or on discord :)
 **1st Boss:**
 - Back + Front 
 - Circles 
+- Speed of jumps
+- Pizza
 
 **2nd Boss:**
 - Back attack
