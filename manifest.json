@@ -1,11 +1,12 @@
 {
 	"files": {
 		"README.md": "fe476d26171225d7764a680f82004d7f79a59d351bc12b87d2f8ce94413f1b1f",
-		"index.js": "73e2d6ba9bf3b9b0cd3f8b0782a8d25142bbad9dc3cd84b23135d7c495208cb5",
+		"index.js": "71ec362ff26aeefabd09d10a66c42d0364265bc76c7c32adc5e5622c1fb9ff97",
 		"module.json": "30ecb2266b0bf0bbf76dc25c06006d5b6533c233ccaa9ddc480d99a4193e108d"
 	},
 	"defs": {
 		"C_CHAT": 1,
+		"C_PLAYER_LOCATION": 5,
 		"S_ACTION_STAGE": 9,
 		"S_CHAT": 1,
 		"S_DESPAWN_COLLECTION": 2,

@@ -1,12 +1,13 @@
 /* Usable Sysbols ◎●←↑→↓↖↗↘↙ */
 
 const mapID = [3101, 3201];					// MAP ID to input [ Normal Mode , Hard Mode ]
+const MarkerItem = 553;
 
 const FirstBossActions = {
 	119: {msg: 'Back + Front (Slow)'},
 	139: {msg: 'Back + Front (Fast)'},
-	313: {msg: 'Circles (Slow)'},
-	314: {msg: 'Circles (Fast)'},
+	313: {msg: 'Circles (Slow)', mark_interval: 10, mark_distance: 300, mark_shift_distance: 75},
+	314: {msg: 'Circles (Fast)', mark_interval: 10, mark_distance: 300, mark_shift_distance: 75},
 	113: {msg: 'Jump (Slow)'},
 	133: {msg: 'Jump (Fast)'},
 	118: {msg: 'Jump P (Slow)'},
@@ -17,8 +18,8 @@ const FirstBossActions = {
 };
 
 const SecondBossActions = {
-	231: {msg: 'OUT safe ↓', mark_degrees: 10, mark_distance: 300},
-	232: {msg: 'IN safe ↑', mark_degrees: 10, mark_distance: 300},
+	231: {msg: 'OUT safe ↓', mark_interval: 10, mark_distance: 300},
+	232: {msg: 'IN safe ↑', mark_interval: 10, mark_distance: 300},
 	108: {msg: 'Back attack!'},
 	235: {msg: 'Debuffs'},
 	230: {msg: 'AOE'},
@@ -78,8 +79,16 @@ module.exports = function nest_guide(mod) {
 				sendToParty = !sendToParty;
 				command.message((sendToParty ? 'Nest Guide - Messages will be sent to the party' : 'Nest Guide - Only you will see messages in chat'));
 			}
+		},
+		test(intervalDegrees, radius, lifetime, shift_distance, shift_angle){
+			bossCurLocation = location.loc;
+			bossCurAngle = location.w;
+			SpawnitemCircle(MarkerItem, Number(intervalDegrees), Number(radius), Number(lifetime), Number(shift_distance), Number(shift_angle));
 		}
 	});
+	
+	let location;
+	mod.hook('C_PLAYER_LOCATION', 5, event =>{location = event});
 	
 	function sendMessage(msg)
 	{
@@ -104,12 +113,11 @@ module.exports = function nest_guide(mod) {
 		}
 	}
 	
-	function Spawnitem(item, degrees, radius, lifetime) {
+	function Spawnitem(item, angle, radius, lifetime) {
 		let r = null, rads = null, finalrad = null, pos = {};
 		
 		r = bossCurAngle - Math.PI;
-		rads = (degrees * Math.PI/180);
-		finalrad = r - rads;
+		finalrad = r - angle;
 		pos.x = bossCurLocation.x + radius * Math.cos(finalrad);
 		pos.y = bossCurLocation.y + radius * Math.sin(finalrad);
 		pos.z = bossCurLocation.z;
@@ -134,11 +142,20 @@ module.exports = function nest_guide(mod) {
 		});
 	}
 	
-	function SpawnitemCircle(item, intervalDegrees, radius, lifetime)
+	function SpawnitemCircle(item, intervalDegrees, radius, lifetime, shift_distance, shift_angle)
 	{
-		for (var degrees=0; degrees<360; degrees+=intervalDegrees)
+		if(shift_angle)
 		{
-			Spawnitem(item, degrees, radius, lifetime);
+			bossCurAngle = (bossCurAngle - Math.PI) - (shift_angle * (Math.PI / 180));
+		}
+		if(shift_distance)
+		{
+			bossCurLocation.x = bossCurLocation.x + shift_distance * Math.cos(bossCurAngle);
+			bossCurLocation.y = bossCurLocation.y + shift_distance * Math.sin(bossCurAngle);
+		}
+		for (var angle = -Math.PI; angle <= Math.PI; angle += Math.PI * intervalDegrees / 180)
+		{
+			Spawnitem(item, angle, radius, lifetime);
 		}
 	}
 	
@@ -155,6 +172,12 @@ module.exports = function nest_guide(mod) {
 					if(FirstBossActions[skill])
 					{
 						sendMessage(FirstBossActions[skill].msg);
+						if(itemhelper && FirstBossActions[skill].mark_interval !== undefined)
+						{
+							bossCurLocation = event.loc;
+							bossCurAngle = event.w;
+							SpawnitemCircle(MarkerItem, FirstBossActions[skill].mark_interval, FirstBossActions[skill].mark_distance, 4000, FirstBossActions[skill].mark_shift_distance)
+						}
 					}
 				}
 				else if (event.templateId === 2000)
@@ -163,11 +186,11 @@ module.exports = function nest_guide(mod) {
 					if(SecondBossActions[skill])
 					{
 						sendMessage(SecondBossActions[skill].msg);
-						if(itemhelper && typeof SecondBossActions[skill].mark_degrees !== "undefined")
+						if(itemhelper && SecondBossActions[skill].mark_interval !== undefined)
 						{
 							bossCurLocation = event.loc;
 							bossCurAngle = event.w;
-							SpawnitemCircle(553, SecondBossActions[skill].mark_degrees, SecondBossActions[skill].mark_distance, 3000)
+							SpawnitemCircle(MarkerItem, SecondBossActions[skill].mark_interval, SecondBossActions[skill].mark_distance, 3000)
 						}
 					}
 				}
