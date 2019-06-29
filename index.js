@@ -79,16 +79,8 @@ module.exports = function nest_guide(mod) {
 				sendToParty = !sendToParty;
 				command.message((sendToParty ? 'Nest Guide - Messages will be sent to the party' : 'Nest Guide - Only you will see messages in chat'));
 			}
-		},
-		test(intervalDegrees, radius, lifetime, shift_distance, shift_angle){
-			bossCurLocation = location.loc;
-			bossCurAngle = location.w;
-			SpawnitemCircle(MarkerItem, Number(intervalDegrees), Number(radius), Number(lifetime), Number(shift_distance), Number(shift_angle));
 		}
 	});
-	
-	let location;
-	mod.hook('C_PLAYER_LOCATION', 5, event =>{location = event});
 	
 	function sendMessage(msg)
 	{
