@@ -97,9 +97,9 @@ module.exports = function nest_guide(mod) {
 		}
 		else 
 		{
-			mod.toClient('S_CHAT', 1, {
+			mod.toClient('S_CHAT', 3, {
 			channel: 21, //21 = p-notice, 1 = party
-			authorName: 'DG-Guide',
+			name: 'DG-Guide',
 			message: msg
 			});
 		}

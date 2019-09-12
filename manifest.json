@@ -1,13 +1,13 @@
 {
 	"files": {
 		"README.md": "fe476d26171225d7764a680f82004d7f79a59d351bc12b87d2f8ce94413f1b1f",
-		"index.js": "128ca78b8fe23ffa57d72c6a5127cee9c16d1764fc1f8cab774f3374d9081206",
+		"index.js": "b81e72092e3f29d214143a82d0fb8db96ddefbf3cec0d4947aaea058e4e15d55",
 		"module.json": "30ecb2266b0bf0bbf76dc25c06006d5b6533c233ccaa9ddc480d99a4193e108d"
 	},
 	"defs": {
 		"C_CHAT": 1,
 		"S_ACTION_STAGE": 9,
-		"S_CHAT": 1,
+		"S_CHAT": 3,
 		"S_DESPAWN_COLLECTION": 2,
 		"S_LOAD_TOPO": 3,
 		"S_SPAWN_COLLECTION": 4
