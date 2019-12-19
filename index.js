@@ -18,8 +18,8 @@ const FirstBossActions = {
 };
 
 const SecondBossActions = {
-	231: {msg: 'OUT safe ↓', mark_interval: 10, mark_distance: 300},
-	232: {msg: 'IN safe ↑', mark_interval: 10, mark_distance: 300},
+	231: {msg: 'OUT safe', mark_interval: 10, mark_distance: 300},
+	232: {msg: 'IN safe', mark_interval: 10, mark_distance: 300},
 	108: {msg: 'Back attack!'},
 	235: {msg: 'Debuffs'},
 	230: {msg: 'AOE'},
